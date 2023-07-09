@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import styled from "@emotion/styled";
+import {TodoContainer} from "./components/TodoContainer.tsx";
+import {TodoComponent} from "./components/TodoComponent.tsx";
 
+const H1 = styled.h1`
+    color: white;
+`
 function App() {
-  const [count, setCount] = useState(0)
+    const todos = [
+        {
+            id: 1,
+            title: "Todo 1",
+            completed: false
+        },
+        {
+            id: 2,
+            title: "Todo 2",
+            completed: false
+        },
+        {
+            id: 3,
+            title: "Todo 3",
+            completed: false
+        },
+        {
+            id: 4,
+            title: "Todo 4",
+            completed: false
+        },
+    ];
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    return (
+        <>
+            <H1>TODO List</H1>
+            <TodoContainer>
+                {todos.map(todo => (
+                    <TodoComponent key={todo.id} completed={todo.completed} todo={todo.title} />
+                ))}
+            </TodoContainer>
+        </>
+    )
+};
 
 export default App
